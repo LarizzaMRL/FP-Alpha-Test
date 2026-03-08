@@ -1,6 +1,6 @@
 # Financial Advisor Panel — FB Alpha
 
-Internal client management panel for a financial advisory firm. Built with **Angular 20**, featuring client CRUD operations, notes management, and a modern UI inspired by Facebook's design system.
+Internal client management panel for a financial advisory firm. Built with **Angular 20**, featuring client CRUD operations, notes management, and a modern UI.
 
 ## Quick Start
 
