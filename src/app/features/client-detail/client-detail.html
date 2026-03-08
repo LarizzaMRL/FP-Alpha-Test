@@ -1,1 +1,76 @@
-<p>client-detail works!</p>
+<div class="detail-container">
+  @if (loading()) {
+    <p class="loading-text">Loading client...</p>
+  } @else if (client()) {
+    <div class="client-card">
+      <div class="client-avatar">
+        {{ client()!.name.charAt(0) }}
+      </div>
+      <div class="client-info">
+        <h1>{{ client()!.name }}</h1>
+        <div class="info-row">
+          <span class="info-label">Email:</span>
+          <span>{{ client()!.email | lowercase }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Phone:</span>
+          <span>{{ (client()!.phone | phoneFormat) || '--' }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Client since:</span>
+          <span>{{ client()!.createdAt | timeAgo }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <h2>Notes ({{ notes().length }})</h2>
+
+      <div class="add-note">
+        <input
+          type="text"
+          placeholder="Note title..."
+          [value]="noteTitle()"
+          (input)="noteTitle.set($any($event.target).value)"
+          class="note-title-input"
+        />
+        <textarea
+          placeholder="Write a note..."
+          [value]="noteText()"
+          (input)="noteText.set($any($event.target).value)"
+          rows="3"
+        ></textarea>
+        <button
+          class="btn-primary"
+          (click)="addNote()"
+          [disabled]="!noteTitle().trim() || !noteText().trim()"
+        >
+          Add Note
+        </button>
+      </div>
+
+      @for (note of notes(); track note.id) {
+        <div class="note-card">
+          <div class="note-content">
+            <h4>{{ note.title }}</h4>
+            <p>{{ note.body }}</p>
+          </div>
+          <button class="btn-delete" (click)="confirmDelete(note)">
+            Delete
+          </button>
+        </div>
+      } @empty {
+        <p class="empty-notes">No notes yet. Add one above!</p>
+      }
+    </div>
+  }
+</div>
+
+@if (showConfirmDialog()) {
+  <app-confirm-dialog
+    title="Delete Note"
+    message="Are you sure you want to delete this note? This action cannot be undone."
+    (confirmed)="deleteNote()"
+    (cancelled)="cancelDelete()"
+  />
+}

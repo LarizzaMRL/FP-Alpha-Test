@@ -1,17 +1,28 @@
+import { LowerCasePipe } from '@angular/common';
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ClientService } from '../../core/services/client-service';
-import { DatePipe } from '../../shared/pipes/date-pipe';
+import { ClientService } from '../../core/services/client.service';
+import { PhoneFormatPipe } from '../../shared/pipes/phone-format-pipe';
+import { TimeAgoPipe } from '../../shared/pipes/time-ago-pipe';
+import { ClientForm } from '../client-form/client-form';
 
 @Component({
   selector: 'app-client-list',
-  imports: [RouterLink, FormsModule, DatePipe],
+  imports: [
+    RouterLink,
+    FormsModule,
+    TimeAgoPipe,
+    PhoneFormatPipe,
+    LowerCasePipe,
+    ClientForm
+  ],
   templateUrl: './client-list.html',
   styleUrl: './client-list.scss',
 })
 export class ClientList implements OnInit {
   private clientService = inject(ClientService);
+  public showModal = signal(false);
   public searchTerm = signal('');
   public currentPage = signal(1);
 
@@ -39,6 +50,14 @@ export class ClientList implements OnInit {
   public onSearch(term: string): void {
     this.searchTerm.set(term);
     this.currentPage.set(1);
+  }
+
+  public openModal(): void {
+    this.showModal.set(true);
+  }
+
+  public closeModal(): void {
+    this.showModal.set(false);
   }
 
   public goToPage(page: number): void {

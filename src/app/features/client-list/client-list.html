@@ -2,7 +2,7 @@
   <div class="client-list-header">
     <h1>Clients</h1>
     <div class="header-actions">
-      <button class="btn-primary">New Client</button>
+      <button class="btn-primary" (click)="openModal()">New Client</button>
     </div>
   </div>
 
@@ -33,10 +33,10 @@
         <tbody>
           @for (client of paginatedClients(); track client.id) {
             <tr [routerLink]="['/clients', client.id]" class="client-row">
-              <td>{{ client.name }}</td>
-              <td>{{ client.email }}</td>
-              <td>{{ client.phone }}</td>
-              <td>{{ client.createdAt | date:'dd/MM/yyyy' }}</td>
+              <td>{{ client.name || '--' }}</td>
+              <td>{{ (client.email | lowercase) || '--' }}</td>
+              <td>{{ (client.phone | phoneFormat) || '--' }}</td>
+              <td>{{ (client.createdAt | timeAgo ) || '--' }}</td>
             </tr>
           } @empty {
             <tr>
@@ -74,5 +74,9 @@
         Next
       </button>
     </div>
+  }
+
+  @if (showModal()) {
+    <app-client-form (close)="closeModal()" (saved)="closeModal()" />
   }
 </div>
