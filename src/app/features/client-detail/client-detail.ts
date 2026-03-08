@@ -30,6 +30,7 @@ export class ClientDetail implements OnInit {
   client = signal<Client | null>(null);
   notes = signal<Note[]>([]);
   loading = signal(true);
+  error = signal(false);
   noteTitle = signal('');
   noteText = signal('');
   showConfirmDialog = signal(false);
@@ -38,9 +39,15 @@ export class ClientDetail implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    this.clientService.getClientById(id).subscribe(client => {
-      this.client.set(client);
-      this.loading.set(false);
+    this.clientService.getClientById(id).subscribe({
+      next: (client) => {
+        this.client.set(client);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.error.set(true);
+        this.loading.set(false);
+      },
     });
 
     this.noteService.getNotesByUserId(id).subscribe(notes => {

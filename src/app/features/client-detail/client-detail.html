@@ -1,6 +1,31 @@
 <div class="detail-container">
   @if (loading()) {
-    <p class="loading-text">Loading client...</p>
+    <div class="client-card skeleton-card">
+      <div class="skeleton-avatar"></div>
+      <div class="skeleton-info">
+        <div class="skeleton-line skeleton-name"></div>
+        <div class="skeleton-line skeleton-text"></div>
+        <div class="skeleton-line skeleton-text"></div>
+        <div class="skeleton-line skeleton-text-short"></div>
+      </div>
+    </div>
+
+    <div class="notes-section">
+      <div class="skeleton-line skeleton-title"></div>
+      @for (i of [1, 2, 3]; track i) {
+        <div class="skeleton-note">
+          <div class="skeleton-line skeleton-note-title"></div>
+          <div class="skeleton-line skeleton-note-body"></div>
+          <div class="skeleton-line skeleton-note-body-short"></div>
+        </div>
+      }
+    </div>
+  } @else if (error()) {
+    <div class="error-container">
+      <div class="error-icon">404</div>
+      <h2>Client not found</h2>
+      <p>The client you're looking for doesn't exist or has been removed.</p>
+    </div>
   } @else if (client()) {
     <div class="client-card">
       <div class="client-avatar">
