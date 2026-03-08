@@ -18,7 +18,6 @@ export interface ApiUser {
     bs: string;
   };
 }
-
 export interface Client {
   id: number;
   name: string;
@@ -26,7 +25,6 @@ export interface Client {
   phone: string;
   createdAt: string;
 }
-
 export interface CreateClientDto {
   name: string;
   email: string;

@@ -1,1 +1,78 @@
-<p>client-list works!</p>
+<div class="client-list-container">
+  <div class="client-list-header">
+    <h1>Clients</h1>
+    <div class="header-actions">
+      <button class="btn-primary">New Client</button>
+    </div>
+  </div>
+
+  <div class="search-wrapper">
+    <img src="/icons/search.svg" alt="search-icon" class="search-icon" />
+    <input
+      type="text"
+      placeholder="Search..."
+      class="search-input"
+      [value]="searchTerm()"
+      (input)="onSearch($any($event.target).value)"
+    />
+  </div>
+
+  @if (loading()) {
+    <p class="loading-text">Charging clients...</p>
+  } @else {
+    <div class="table-wrapper">
+      <table class="clients-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Creation Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (client of paginatedClients(); track client.id) {
+            <tr [routerLink]="['/clients', client.id]" class="client-row">
+              <td>{{ client.name }}</td>
+              <td>{{ client.email }}</td>
+              <td>{{ client.phone }}</td>
+              <td>{{ client.createdAt | date:'dd/MM/yyyy' }}</td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4" class="empty-state">No clients found</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="pagination">
+      <button
+        (click)="previousPage()"
+        [disabled]="currentPage() === 1"
+        class="btn-page"
+      >
+        Back
+      </button>
+
+      @for (page of [].constructor(totalPages()); track $index) {
+        <button
+          (click)="goToPage($index + 1)"
+          [class.active]="currentPage() === $index + 1"
+          class="btn-page"
+        >
+          {{ $index + 1 }}
+        </button>
+      }
+
+      <button
+        (click)="nextPage()"
+        [disabled]="currentPage() === totalPages()"
+        class="btn-page"
+      >
+        Next
+      </button>
+    </div>
+  }
+</div>
