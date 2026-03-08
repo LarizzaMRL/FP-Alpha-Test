@@ -1,12 +1,22 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
 .navbar {
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: var(--bg-card);
+  box-shadow: 0 2px 4px var(--shadow);
   position: sticky;
   top: 0;
   z-index: 100;
   height: 56px;
   display: flex;
   align-items: center;
+  transition: background-color 0.3s;
 }
 
 .navbar-container {
@@ -27,7 +37,7 @@
 }
 
 .navbar-logo {
-  background-color: #1877f2;
+  background-color: var(--blue-primary);
   color: #ffffff;
   font-weight: 700;
   font-size: 20px;
@@ -42,13 +52,13 @@
 .navbar-title {
   font-size: 20px;
   font-weight: 700;
-  color: #606770;
+  color: var(--text-secondary);
 }
 
 .navbar-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .navbar-link {
@@ -58,16 +68,59 @@
   font-weight: 500;
   color: #ffffff;
   transition: background-color 0.2s;
-  background-color: #1877f2;
+  background-color: var(--blue-primary);
   cursor: pointer;
 
   &:hover {
-    background-color: #1565c0;
+    background-color: var(--blue-hover);
     color: #ffffff;
   }
 
   &.active {
-    background-color: #1565c0;
+    background-color: var(--blue-hover);
     color: #ffffff;
+  }
+}
+
+.theme-toggle {
+  cursor: pointer;
+  padding: 4px;
+}
+
+.toggle-track {
+  width: 54px;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #e4e6eb;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  transition: background-color 0.3s;
+
+  &.dark {
+    background-color: #3a3b3c;
+  }
+}
+
+.toggle-icon {
+  font-size: 14px;
+  z-index: 1;
+  line-height: 1;
+}
+
+.toggle-thumb {
+  position: absolute;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+
+  &.dark {
+    transform: translateX(26px);
   }
 }

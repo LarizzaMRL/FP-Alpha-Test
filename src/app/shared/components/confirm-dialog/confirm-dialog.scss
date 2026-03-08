@@ -12,23 +12,24 @@
 }
 
 .dialog-content {
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border-radius: 8px;
   padding: 24px;
   max-width: 400px;
   width: 100%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--shadow);
+  transition: background-color 0.3s;
 
   h3 {
     font-size: 18px;
     font-weight: 700;
-    color: #1c1e21;
+    color: var(--text-primary);
     margin-bottom: 8px;
   }
 
   p {
     font-size: 14px;
-    color: #606770;
+    color: var(--text-secondary);
     margin-bottom: 20px;
   }
 }
@@ -41,8 +42,8 @@
 
 .btn-cancel {
   padding: 8px 16px;
-  background-color: #e4e6eb;
-  color: #1c1e21;
+  background-color: var(--btn-secondary-bg);
+  color: var(--text-primary);
   border: none;
   border-radius: 6px;
   font-size: 14px;
@@ -50,13 +51,13 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #d8dadf;
+    background-color: var(--btn-secondary-hover);
   }
 }
 
 .btn-danger {
   padding: 8px 16px;
-  background-color: #e74c3c;
+  background-color: var(--danger);
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -65,6 +66,6 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #c0392b;
+    background-color: var(--danger-hover);
   }
 }

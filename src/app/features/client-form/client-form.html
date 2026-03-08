@@ -47,7 +47,11 @@
           type="text"
           formControlName="phone"
           placeholder="Enter phone number"
+          [class.input-error]="form.get('phone')?.touched && form.get('phone')?.invalid"
         />
+        @if (form.get('phone')?.touched && form.get('phone')?.hasError('pattern')) {
+          <span class="error-msg">Only numbers are allowed</span>
+        }
       </div>
 
       <div class="modal-actions">

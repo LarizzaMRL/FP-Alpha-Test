@@ -6,8 +6,16 @@
     </a>
 
     <div class="navbar-actions">
+      <div class="theme-toggle" (click)="toggleTheme()">
+        <div class="toggle-track" [class.dark]="isDark()">
+          <span class="toggle-icon sun">☀️</span>
+          <span class="toggle-icon moon">🌙</span>
+          <div class="toggle-thumb" [class.dark]="isDark()"></div>
+        </div>
+      </div>
+
       @if (currentUrl() !== '/clients') {
-        <a routerLink="/clients" class="navbar-link">
+        <a routerLink="/clients" routerLinkActive="active" class="navbar-link">
           Clients
         </a>
       }

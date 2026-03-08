@@ -12,12 +12,13 @@
 }
 
 .modal-content {
-  background-color: #ffffff;
+  background-color: var(--bg-card);
   border-radius: 8px;
   width: 100%;
   max-width: 480px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--shadow);
   padding: 24px;
+  transition: background-color 0.3s;
 }
 
 .modal-header {
@@ -29,7 +30,7 @@
   h2 {
     font-size: 20px;
     font-weight: 700;
-    color: #1c1e21;
+    color: var(--text-primary);
   }
 }
 
@@ -37,13 +38,13 @@
   background: none;
   border: none;
   font-size: 20px;
-  color: #606770;
+  color: var(--text-secondary);
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 4px;
 
   &:hover {
-    background-color: #f0f2f5;
+    background-color: var(--bg-hover);
   }
 }
 
@@ -54,37 +55,39 @@
     display: block;
     font-size: 14px;
     font-weight: 600;
-    color: #1c1e21;
+    color: var(--text-primary);
     margin-bottom: 6px;
   }
 
   input {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #dddfe2;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
     font-size: 14px;
     outline: none;
-    transition: border-color 0.2s;
     box-sizing: border-box;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    transition: border-color 0.2s, background-color 0.3s;
 
     &:focus {
-      border-color: #1877f2;
+      border-color: var(--blue-primary);
     }
 
     &::placeholder {
-      color: #8a8d91;
+      color: var(--text-placeholder);
     }
   }
 
   .input-error {
-    border-color: #e74c3c;
+    border-color: var(--danger);
   }
 }
 
 .error-msg {
   display: block;
-  color: #e74c3c;
+  color: var(--danger);
   font-size: 12px;
   margin-top: 4px;
 }
@@ -98,8 +101,8 @@
 
 .btn-cancel {
   padding: 10px 20px;
-  background-color: #e4e6eb;
-  color: #1c1e21;
+  background-color: var(--btn-secondary-bg);
+  color: var(--text-primary);
   border: none;
   border-radius: 6px;
   font-size: 14px;
@@ -107,13 +110,13 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #d8dadf;
+    background-color: var(--btn-secondary-hover);
   }
 }
 
 .btn-primary {
   padding: 10px 20px;
-  background-color: #1877f2;
+  background-color: var(--blue-primary);
   color: #ffffff;
   border: none;
   border-radius: 6px;
@@ -122,6 +125,6 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #1565c0;
+    background-color: var(--blue-hover);
   }
 }

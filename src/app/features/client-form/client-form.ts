@@ -18,7 +18,7 @@ export class ClientForm {
   public form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    phone: [''],
+    phone: ['', [Validators.pattern(/^[0-9]*$/)]],
   });
 
   public onSubmit(): void {

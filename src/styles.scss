@@ -1,9 +1,61 @@
+:root {
+  --bg-primary: #f0f2f5;
+  --bg-card: #ffffff;
+  --bg-hover: #f0f2f5;
+  --text-primary: #1c1e21;
+  --text-secondary: #606770;
+  --text-placeholder: #8a8d91;
+  --border-color: #dddfe2;
+  --border-light: #e4e6eb;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --blue-primary: #1877f2;
+  --blue-hover: #1565c0;
+  --danger: #e74c3c;
+  --danger-hover: #c0392b;
+  --skeleton-base: #e4e6eb;
+  --skeleton-shine: #f0f2f5;
+  --btn-secondary-bg: #e4e6eb;
+  --btn-secondary-hover: #d8dadf;
+}
+
+[data-theme='dark'] {
+  --bg-primary: #18191a;
+  --bg-card: #242526;
+  --bg-hover: #3a3b3c;
+  --text-primary: #e4e6eb;
+  --text-secondary: #b0b3b8;
+  --text-placeholder: #8a8d91;
+  --border-color: #3e4042;
+  --border-light: #3e4042;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --blue-primary: #2d88ff;
+  --blue-hover: #1a73e8;
+  --danger: #f02849;
+  --danger-hover: #d81e3e;
+  --skeleton-base: #3a3b3c;
+  --skeleton-shine: #4e4f50;
+  --btn-secondary-bg: #3a3b3c;
+  --btn-secondary-hover: #4e4f50;
+}
+
+[data-theme='dark'] .search-icon {
+  filter: invert(1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f0f2f5;
-  color: #1c1e21;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
 }
+
 a {
   text-decoration: none;
   color: inherit;
